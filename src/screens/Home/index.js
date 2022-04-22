@@ -24,7 +24,7 @@ const FILM_GENRE = [
   {type: 'Western', emoji: '🤠'},
 ];
 
-const Home = () => {
+const Home = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -67,7 +67,7 @@ const Home = () => {
       <View style={styles.carouselHeadingContainer}>
         <Text style={styles.carouselHeading}>Showing this month</Text>
       </View>
-      <Carousel />
+      <Carousel navigation={navigation} />
     </SafeAreaView>
   );
 };

@@ -29,6 +29,44 @@ const MOVIE_LIST = [
     Production: 'Columbia Pictures',
     Website: 'N/A',
     Response: 'True',
+    cast: [
+      {
+        name: 'Tom Holland',
+        petName: 'Nate',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNzZiNTEyNTItYjNhMS00YjI2LWIwMWQtZmYwYTRlNjMyZTJjXkEyXkFqcGdeQXVyMTExNzQzMDE0._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Mark Whelberg',
+        petName: 'Victor Sullivan',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BMTU0MTQ4OTMyMV5BMl5BanBnXkFtZTcwMTQxOTY1NA@@._V1_UY317_CR14,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Sophia Taylor Ali',
+        petName: 'Chloe Frazer',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNzAyMGZhYTYtMDQ3MS00ZDc4LWE3NjctMzI4Y2JiYjlkNmY5XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_UY317_CR52,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Tati Gabrielle',
+        petName: 'Braddok',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNjM5NDk3NDM4NV5BMl5BanBnXkFtZTgwMzU4Mzc1NzM@._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Antonio Banderas',
+        petName: 'Santiago Monacada',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BMTUyOTQ3NTYyNF5BMl5BanBnXkFtZTcwMTY2NjIzNQ@@._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Pingi Moli',
+        petName: 'Hugo',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNWZkYjVkMTEtZjQzYi00OWU5LTlmNjItODdmNDhhNzE5YTUxXkEyXkFqcGdeQXVyNzc2NzkyMDE@._V1_UY317_CR20,0,214,317_AL__QL50.jpg',
+      },
+    ],
   },
   {
     Title: 'Dune',
@@ -61,6 +99,44 @@ const MOVIE_LIST = [
     Production: 'N/A',
     Website: 'N/A',
     Response: 'True',
+    cast: [
+      {
+        name: 'Tom Holland',
+        petName: 'Nate',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNzZiNTEyNTItYjNhMS00YjI2LWIwMWQtZmYwYTRlNjMyZTJjXkEyXkFqcGdeQXVyMTExNzQzMDE0._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Mark Whelberg',
+        petName: 'Victor Sullivan',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BMTU0MTQ4OTMyMV5BMl5BanBnXkFtZTcwMTQxOTY1NA@@._V1_UY317_CR14,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Sophia Taylor Ali',
+        petName: 'Chloe Frazer',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNzAyMGZhYTYtMDQ3MS00ZDc4LWE3NjctMzI4Y2JiYjlkNmY5XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_UY317_CR52,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Tati Gabrielle',
+        petName: 'Braddok',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNjM5NDk3NDM4NV5BMl5BanBnXkFtZTgwMzU4Mzc1NzM@._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Antonio Banderas',
+        petName: 'Santiago Monacada',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BMTUyOTQ3NTYyNF5BMl5BanBnXkFtZTcwMTY2NjIzNQ@@._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Pingi Moli',
+        petName: 'Hugo',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNWZkYjVkMTEtZjQzYi00OWU5LTlmNjItODdmNDhhNzE5YTUxXkEyXkFqcGdeQXVyNzc2NzkyMDE@._V1_UY317_CR20,0,214,317_AL__QL50.jpg',
+      },
+    ],
   },
   {
     Title: 'Death on the Nile',
@@ -93,6 +169,44 @@ const MOVIE_LIST = [
     Production: 'N/A',
     Website: 'N/A',
     Response: 'True',
+    cast: [
+      {
+        name: 'Tom Holland',
+        petName: 'Nate',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNzZiNTEyNTItYjNhMS00YjI2LWIwMWQtZmYwYTRlNjMyZTJjXkEyXkFqcGdeQXVyMTExNzQzMDE0._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Mark Whelberg',
+        petName: 'Victor Sullivan',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BMTU0MTQ4OTMyMV5BMl5BanBnXkFtZTcwMTQxOTY1NA@@._V1_UY317_CR14,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Sophia Taylor Ali',
+        petName: 'Chloe Frazer',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNzAyMGZhYTYtMDQ3MS00ZDc4LWE3NjctMzI4Y2JiYjlkNmY5XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_UY317_CR52,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Tati Gabrielle',
+        petName: 'Braddok',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNjM5NDk3NDM4NV5BMl5BanBnXkFtZTgwMzU4Mzc1NzM@._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Antonio Banderas',
+        petName: 'Santiago Monacada',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BMTUyOTQ3NTYyNF5BMl5BanBnXkFtZTcwMTY2NjIzNQ@@._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Pingi Moli',
+        petName: 'Hugo',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNWZkYjVkMTEtZjQzYi00OWU5LTlmNjItODdmNDhhNzE5YTUxXkEyXkFqcGdeQXVyNzc2NzkyMDE@._V1_UY317_CR20,0,214,317_AL__QL50.jpg',
+      },
+    ],
   },
   {
     Title: 'CODA',
@@ -125,6 +239,44 @@ const MOVIE_LIST = [
     Production: 'N/A',
     Website: 'N/A',
     Response: 'True',
+    cast: [
+      {
+        name: 'Tom Holland',
+        petName: 'Nate',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNzZiNTEyNTItYjNhMS00YjI2LWIwMWQtZmYwYTRlNjMyZTJjXkEyXkFqcGdeQXVyMTExNzQzMDE0._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Mark Whelberg',
+        petName: 'Victor Sullivan',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BMTU0MTQ4OTMyMV5BMl5BanBnXkFtZTcwMTQxOTY1NA@@._V1_UY317_CR14,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Sophia Taylor Ali',
+        petName: 'Chloe Frazer',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNzAyMGZhYTYtMDQ3MS00ZDc4LWE3NjctMzI4Y2JiYjlkNmY5XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_UY317_CR52,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Tati Gabrielle',
+        petName: 'Braddok',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNjM5NDk3NDM4NV5BMl5BanBnXkFtZTgwMzU4Mzc1NzM@._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Antonio Banderas',
+        petName: 'Santiago Monacada',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BMTUyOTQ3NTYyNF5BMl5BanBnXkFtZTcwMTY2NjIzNQ@@._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Pingi Moli',
+        petName: 'Hugo',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNWZkYjVkMTEtZjQzYi00OWU5LTlmNjItODdmNDhhNzE5YTUxXkEyXkFqcGdeQXVyNzc2NzkyMDE@._V1_UY317_CR20,0,214,317_AL__QL50.jpg',
+      },
+    ],
   },
   {
     Title: 'Drive My Car',
@@ -158,6 +310,44 @@ const MOVIE_LIST = [
     Production: 'N/A',
     Website: 'N/A',
     Response: 'True',
+    cast: [
+      {
+        name: 'Tom Holland',
+        petName: 'Nate',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNzZiNTEyNTItYjNhMS00YjI2LWIwMWQtZmYwYTRlNjMyZTJjXkEyXkFqcGdeQXVyMTExNzQzMDE0._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Mark Whelberg',
+        petName: 'Victor Sullivan',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BMTU0MTQ4OTMyMV5BMl5BanBnXkFtZTcwMTQxOTY1NA@@._V1_UY317_CR14,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Sophia Taylor Ali',
+        petName: 'Chloe Frazer',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNzAyMGZhYTYtMDQ3MS00ZDc4LWE3NjctMzI4Y2JiYjlkNmY5XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_UY317_CR52,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Tati Gabrielle',
+        petName: 'Braddok',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNjM5NDk3NDM4NV5BMl5BanBnXkFtZTgwMzU4Mzc1NzM@._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Antonio Banderas',
+        petName: 'Santiago Monacada',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BMTUyOTQ3NTYyNF5BMl5BanBnXkFtZTcwMTY2NjIzNQ@@._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Pingi Moli',
+        petName: 'Hugo',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNWZkYjVkMTEtZjQzYi00OWU5LTlmNjItODdmNDhhNzE5YTUxXkEyXkFqcGdeQXVyNzc2NzkyMDE@._V1_UY317_CR20,0,214,317_AL__QL50.jpg',
+      },
+    ],
   },
   {
     Title: 'West Side Story',
@@ -190,6 +380,44 @@ const MOVIE_LIST = [
     Production: 'N/A',
     Website: 'N/A',
     Response: 'True',
+    cast: [
+      {
+        name: 'Tom Holland',
+        petName: 'Nate',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNzZiNTEyNTItYjNhMS00YjI2LWIwMWQtZmYwYTRlNjMyZTJjXkEyXkFqcGdeQXVyMTExNzQzMDE0._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Mark Whelberg',
+        petName: 'Victor Sullivan',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BMTU0MTQ4OTMyMV5BMl5BanBnXkFtZTcwMTQxOTY1NA@@._V1_UY317_CR14,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Sophia Taylor Ali',
+        petName: 'Chloe Frazer',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNzAyMGZhYTYtMDQ3MS00ZDc4LWE3NjctMzI4Y2JiYjlkNmY5XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_UY317_CR52,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Tati Gabrielle',
+        petName: 'Braddok',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNjM5NDk3NDM4NV5BMl5BanBnXkFtZTgwMzU4Mzc1NzM@._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Antonio Banderas',
+        petName: 'Santiago Monacada',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BMTUyOTQ3NTYyNF5BMl5BanBnXkFtZTcwMTY2NjIzNQ@@._V1_UX214_CR0,0,214,317_AL__QL50.jpg',
+      },
+      {
+        name: 'Pingi Moli',
+        petName: 'Hugo',
+        thumbnail:
+          'https://m.media-amazon.com/images/M/MV5BNWZkYjVkMTEtZjQzYi00OWU5LTlmNjItODdmNDhhNzE5YTUxXkEyXkFqcGdeQXVyNzc2NzkyMDE@._V1_UY317_CR20,0,214,317_AL__QL50.jpg',
+      },
+    ],
   },
 ];
 

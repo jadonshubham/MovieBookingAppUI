@@ -1,14 +1,14 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import TabRoutes from './routes/TabRoutes';
+import HomeRoutes from './routes/HomeRoutes';
 
 const App = () => {
   return (
     <>
       <StatusBar barStyle="light-content" />
       <NavigationContainer>
-        <TabRoutes />
+        <HomeRoutes />
       </NavigationContainer>
     </>
   );

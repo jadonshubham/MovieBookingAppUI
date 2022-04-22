@@ -5,7 +5,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import HomeRoutes from './HomeRoutes';
+// import HomeRoutes from './HomeRoutes';
+import Home from '../screens/Home';
 
 const Tab = createBottomTabNavigator();
 
@@ -76,10 +77,10 @@ const TabRoutes = () => {
       screenOptions={({route}) => ({
         headerShown: false,
       })}>
-      <Tab.Screen name="HomeScreen" component={HomeRoutes} />
-      <Tab.Screen name="Favourite" component={HomeRoutes} />
-      <Tab.Screen name="Browse" component={HomeRoutes} />
-      <Tab.Screen name="Profile" component={HomeRoutes} />
+      <Tab.Screen name="HomeScreen" component={Home} />
+      <Tab.Screen name="Favourite" component={Home} />
+      <Tab.Screen name="Browse" component={Home} />
+      <Tab.Screen name="Profile" component={Home} />
     </Tab.Navigator>
   );
 };

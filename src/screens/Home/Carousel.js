@@ -1,6 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {StyleSheet, Text, View, Image, Dimensions} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Dimensions,
+  Pressable,
+} from 'react-native';
 import Animated, {
   Extrapolate,
   interpolate,
@@ -37,7 +44,12 @@ const ITEM_HEIGHT = ITEM_SIZE / POSTER_ASPECT_RATIO;
 const SCALE_FACTOR = 0.7;
 const SNAP_TO_INTERVAL = ITEM_SIZE + 2 * SPACING;
 
-const RenderMoviePoster = ({item, translateX, index}) => {
+const RenderMoviePoster = ({
+  item,
+  translateX,
+  index,
+  handleDetailNavigation,
+}) => {
   const INPUT_RANGE = [
     (index - 2) * SNAP_TO_INTERVAL,
     (index - 1) * SNAP_TO_INTERVAL,
@@ -87,6 +99,7 @@ const RenderMoviePoster = ({item, translateX, index}) => {
       padding,
     };
   });
+
   if (item?.isDummy) {
     if (item?.title === 'left') {
       return <View style={styles.dummyCardLeft} />;
@@ -100,7 +113,7 @@ const RenderMoviePoster = ({item, translateX, index}) => {
         movieCardAnimatedStyle,
         {alignItems: 'center'},
       ]}>
-      <View>
+      <Pressable onPress={handleDetailNavigation}>
         <Image
           source={{uri: item.Poster}}
           style={{
@@ -110,7 +123,7 @@ const RenderMoviePoster = ({item, translateX, index}) => {
             borderRadius: 30,
           }}
         />
-      </View>
+      </Pressable>
     </Animated.View>
   );
 };
@@ -185,12 +198,16 @@ const RenderMovieCarouselPagination = ({item, translateX, index}) => {
   return <Animated.View style={[styles.dot, dotAnimatedStyle]} />;
 };
 
-const Carousel = () => {
+const Carousel = ({navigation}) => {
   const translateX = useSharedValue(0);
 
   const handleScrollEvent = useAnimatedScrollHandler(event => {
     translateX.value = event.contentOffset.x;
   });
+
+  const handleDetailNavigation = item => {
+    navigation.navigate('Details', {movieData: item});
+  };
 
   return (
     <>
@@ -202,6 +219,7 @@ const Carousel = () => {
               item={item}
               translateX={translateX}
               index={index}
+              handleDetailNavigation={() => handleDetailNavigation(item)}
             />
           )}
           keyExtractor={(item, index) => index}
