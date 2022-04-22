@@ -4,6 +4,7 @@ import {StyleSheet, Text, View, Image, Dimensions} from 'react-native';
 import Animated, {
   Extrapolate,
   interpolate,
+  interpolateColor,
   useAnimatedScrollHandler,
   useAnimatedStyle,
   useSharedValue,
@@ -27,18 +28,20 @@ MOVIE_LIST_WITH_DUMMY.unshift(DUMMY_MOVIE_OBJ_RIGHT);
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
-const ITEM_SIZE = WINDOW_WIDTH * 0.5;
-const THUMBNAIL_SIZE = (WINDOW_HEIGHT * WINDOW_HEIGHT) / 64e4;
+const ITEM_SIZE_MULTIPLIER = (WINDOW_HEIGHT * WINDOW_HEIGHT) / 64e4;
+const ITEM_SIZE =
+  WINDOW_WIDTH * 0.5 * (ITEM_SIZE_MULTIPLIER > 1 ? 1 : ITEM_SIZE_MULTIPLIER);
 const SPACING = 0;
 const POSTER_ASPECT_RATIO = 25 / 37;
 const ITEM_HEIGHT = ITEM_SIZE / POSTER_ASPECT_RATIO;
 const SCALE_FACTOR = 0.7;
+const SNAP_TO_INTERVAL = ITEM_SIZE + 2 * SPACING;
 
 const RenderMoviePoster = ({item, translateX, index}) => {
   const INPUT_RANGE = [
-    (index - 2) * (WINDOW_WIDTH - ITEM_SIZE + 2 * SPACING),
-    (index - 1) * (WINDOW_WIDTH - ITEM_SIZE + 2 * SPACING),
-    index * (WINDOW_WIDTH - ITEM_SIZE + 2 * SPACING),
+    (index - 2) * SNAP_TO_INTERVAL,
+    (index - 1) * SNAP_TO_INTERVAL,
+    index * SNAP_TO_INTERVAL,
   ];
 
   const movieCardAnimatedStyle = useAnimatedStyle(() => {
@@ -103,8 +106,6 @@ const RenderMoviePoster = ({item, translateX, index}) => {
           style={{
             resizeMode: 'cover',
             aspectRatio: POSTER_ASPECT_RATIO,
-            // height: '100%',
-            // width: `${THUMBNAIL_SIZE > 1 ? 100 : THUMBNAIL_SIZE * 100}%`,
             width: '100%',
             borderRadius: 30,
           }}
@@ -116,9 +117,9 @@ const RenderMoviePoster = ({item, translateX, index}) => {
 
 const RenderMovieDetail = ({item, translateX, index}) => {
   const INPUT_RANGE = [
-    (index - 2) * (WINDOW_WIDTH - ITEM_SIZE + 2 * SPACING),
-    (index - 1) * (WINDOW_WIDTH - ITEM_SIZE + 2 * SPACING),
-    index * (WINDOW_WIDTH - ITEM_SIZE + 2 * SPACING),
+    (index - 2) * SNAP_TO_INTERVAL,
+    (index - 1) * SNAP_TO_INTERVAL,
+    index * SNAP_TO_INTERVAL,
   ];
 
   const movieCardAnimatedStyle = useAnimatedStyle(() => {
@@ -152,6 +153,38 @@ const RenderMovieDetail = ({item, translateX, index}) => {
   );
 };
 
+const RenderMovieCarouselPagination = ({item, translateX, index}) => {
+  const INPUT_RANGE = [
+    (index - 2) * SNAP_TO_INTERVAL,
+    (index - 1) * SNAP_TO_INTERVAL,
+    index * SNAP_TO_INTERVAL,
+  ];
+
+  const dotAnimatedStyle = useAnimatedStyle(() => {
+    const width = interpolate(
+      translateX.value,
+      INPUT_RANGE,
+      [10, 20, 10],
+      Extrapolate.CLAMP,
+    );
+    const backgroundColor = interpolateColor(translateX.value, INPUT_RANGE, [
+      '#78787A',
+      '#ffb43a',
+      '#78787A',
+    ]);
+
+    return {
+      width,
+      backgroundColor,
+    };
+  });
+
+  if (item?.isDummy) {
+    return null;
+  }
+  return <Animated.View style={[styles.dot, dotAnimatedStyle]} />;
+};
+
 const Carousel = () => {
   const translateX = useSharedValue(0);
 
@@ -173,34 +206,56 @@ const Carousel = () => {
           )}
           keyExtractor={(item, index) => index}
           horizontal
-          snapToInterval={ITEM_SIZE + 2 * SPACING}
+          snapToInterval={SNAP_TO_INTERVAL}
           showsHorizontalScrollIndicator={false}
           decelerationRate={0}
           onScroll={handleScrollEvent}
           scrollEventThrottle={16}
         />
       </View>
-      <View style={styles.carouselFooter}>
-        <Animated.FlatList
-          data={MOVIE_LIST_WITH_DUMMY}
-          renderItem={({item, index}) => (
-            <RenderMovieDetail
-              item={item}
-              translateX={translateX}
-              index={index}
-            />
-          )}
-          keyExtractor={(item, index) => index}
-          horizontal
-          scrollEnabled={false}
-          showsHorizontalScrollIndicator={false}
-          decelerationRate={0}
-          scrollEventThrottle={16}
-          contentContainerStyle={{
-            position: 'relative',
-            width: '100%',
-          }}
-        />
+      <View style={[styles.carouselFooter]}>
+        <View style={{height: 60, width: '100%'}}>
+          <Animated.FlatList
+            data={MOVIE_LIST_WITH_DUMMY}
+            renderItem={({item, index}) => (
+              <RenderMovieDetail
+                item={item}
+                translateX={translateX}
+                index={index}
+              />
+            )}
+            keyExtractor={(item, index) => index}
+            horizontal
+            scrollEnabled={false}
+            showsHorizontalScrollIndicator={false}
+            decelerationRate={0}
+            scrollEventThrottle={16}
+            contentContainerStyle={{
+              position: 'relative',
+              width: '100%',
+            }}
+          />
+        </View>
+
+        {/* Pagination Comp */}
+        <View style={{alignItems: 'center'}}>
+          <Animated.FlatList
+            data={MOVIE_LIST_WITH_DUMMY}
+            renderItem={({item, index}) => (
+              <RenderMovieCarouselPagination
+                item={item}
+                translateX={translateX}
+                index={index}
+              />
+            )}
+            keyExtractor={(item, index) => index}
+            horizontal
+            scrollEnabled={false}
+            showsHorizontalScrollIndicator={false}
+            decelerationRate={0}
+            scrollEventThrottle={16}
+          />
+        </View>
       </View>
     </>
   );
@@ -210,7 +265,6 @@ export default Carousel;
 
 const styles = StyleSheet.create({
   carouselContainer: {
-    // flex: 1,
     marginTop: 20,
     overflow: 'visible',
   },
@@ -248,5 +302,12 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 16,
     color: '#fff',
+  },
+  dot: {
+    width: 10,
+    height: 10,
+    backgroundColor: '#78787A',
+    marginRight: 10,
+    borderRadius: 5,
   },
 });
