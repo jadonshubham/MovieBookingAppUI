@@ -16,6 +16,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
+import {SharedElement} from 'react-navigation-shared-element';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MOVIE_LIST from '../../constants/MOVIE_LIST';
 
@@ -114,15 +115,17 @@ const RenderMoviePoster = ({
         {alignItems: 'center'},
       ]}>
       <Pressable onPress={handleDetailNavigation}>
-        <Image
-          source={{uri: item.Poster}}
-          style={{
-            resizeMode: 'cover',
-            aspectRatio: POSTER_ASPECT_RATIO,
-            width: '100%',
-            borderRadius: 30,
-          }}
-        />
+        <SharedElement id={item.imdbID}>
+          <Image
+            source={{uri: item.Poster}}
+            style={{
+              resizeMode: 'cover',
+              aspectRatio: POSTER_ASPECT_RATIO,
+              width: '100%',
+              borderRadius: 30,
+            }}
+          />
+        </SharedElement>
       </Pressable>
     </Animated.View>
   );

@@ -1,15 +1,26 @@
+import {TransitionPresets} from '@react-navigation/stack';
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import Details from '../screens/Details';
 import TabRoutes from './TabRoutes';
 
-const Stack = createNativeStackNavigator();
+const Stack = createSharedElementStackNavigator();
 
 const HomeRoutes = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Home" component={TabRoutes} />
-      <Stack.Screen name="Details" component={Details} />
+      <Stack.Screen
+        name="Details"
+        component={Details}
+        sharedElements={route => {
+          const {movieData} = route.params;
+          return [movieData.imdbID];
+        }}
+        options={{
+          ...TransitionPresets.FadeFromBottomAndroid,
+        }}
+      />
     </Stack.Navigator>
   );
 };

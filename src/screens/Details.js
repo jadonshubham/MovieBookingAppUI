@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -17,6 +17,14 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {SharedElement} from 'react-navigation-shared-element';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+  interpolate,
+  Extrapolate,
+} from 'react-native-reanimated';
 
 const {width, height} = Dimensions.get('screen');
 const POSTER_ASPECT_RATIO = 25 / 37;
@@ -38,95 +46,157 @@ const RenderCast = ({item}) => {
 const Details = ({route, navigation}) => {
   const {movieData} = route.params;
   const insets = useSafeAreaInsets();
+  const progress = useSharedValue(0);
+
+  useEffect(() => {
+    progress.value = withTiming(4, {duration: 2000});
+  }, [progress]);
+
+  const animatedCardStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      progress.value,
+      [0, 1],
+      [0, 1],
+      Extrapolate.CLAMP,
+    );
+    return {opacity};
+  });
+  const animatedCardHeaderStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      progress.value,
+      [1, 2],
+      [0, 1],
+      Extrapolate.CLAMP,
+    );
+    return {opacity};
+  });
+  const animatedCardPlotStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      progress.value,
+      [2, 3],
+      [0, 1],
+      Extrapolate.CLAMP,
+    );
+    return {opacity};
+  });
+  const animatedCastStyle = useAnimatedStyle(() => {
+    const marginLeft = interpolate(
+      progress.value,
+      [2, 3],
+      [width / 2, 0],
+      Extrapolate.CLAMP,
+    );
+    return {marginLeft};
+  });
+  const animatedCardButtonStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      progress.value,
+      [3, 4],
+      [0, 1],
+      Extrapolate.CLAMP,
+    );
+    return {opacity};
+  });
 
   const goBack = () => navigation.goBack();
 
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container]}>
       <StatusBar hidden />
       <ScrollView style={styles.container}>
         <View style={styles.headerImage}>
           <View style={{position: 'relative', width: '100%', height: '100%'}}>
-            <Image
-              source={{uri: movieData.Poster}}
-              style={{
-                resizeMode: 'cover',
-                aspectRatio: POSTER_ASPECT_RATIO,
-                width: '100%',
-              }}
-            />
-            <LinearGradient
-              colors={['transparent', 'rgba(153, 153, 153, 0.5)', '#21242C']}
-              style={styles.gradient}
-            />
+            <SharedElement id={movieData.imdbID}>
+              <Image
+                source={{uri: movieData.Poster}}
+                style={{
+                  resizeMode: 'cover',
+                  aspectRatio: POSTER_ASPECT_RATIO,
+                  width: '100%',
+                }}
+              />
+            </SharedElement>
+            <Animated.View style={[styles.gradient, animatedCardStyle]}>
+              <LinearGradient
+                colors={['transparent', 'rgba(153, 153, 153, 0.5)', '#21242C']}
+                style={{width: '100%', height: '100%'}}
+              />
+            </Animated.View>
           </View>
         </View>
-        <View style={[styles.navbar, {top: insets?.top || 10}]}>
+        <Animated.View
+          style={[
+            styles.navbar,
+            {top: insets?.top || 10},
+            animatedCardHeaderStyle,
+          ]}>
           <Pressable onPress={goBack} style={styles.navbarIconContainer}>
             <Ionicons name="chevron-back" size={30} color="#ffffff" />
           </Pressable>
           <View style={styles.navbarIconContainer}>
             <MaterialCommunityIcons name="bookmark" size={30} color="#ffffff" />
           </View>
-        </View>
-        <View style={styles.card}>
-          <View style={styles.cardHeader}>
+        </Animated.View>
+        <Animated.View style={[styles.card, animatedCardStyle]}>
+          <Animated.View style={[styles.cardHeader, animatedCardHeaderStyle]}>
             <Text style={styles.cardHeading}>{movieData?.Title}</Text>
             <View style={styles.movieRating}>
               <AntDesign name="star" size={20} color="#ffb43a" />
               <Text style={styles.movieRatingText}>{movieData.imdbRating}</Text>
             </View>
-          </View>
-          <View style={styles.plotContainer}>
-            <Text style={styles.plot} numberOfLines={5}>
-              {movieData.Plot}
-            </Text>
-            <View style={styles.movieInfo}>
-              <Text style={styles.movieInfoText}>
-                Director:{' '}
-                <Text style={styles.movieInfoName}>{movieData.Director}</Text>
+          </Animated.View>
+          <Animated.View style={animatedCardPlotStyle}>
+            <View style={styles.plotContainer}>
+              <Text style={styles.plot} numberOfLines={5}>
+                {movieData.Plot}
               </Text>
-              <Text style={[styles.movieInfoNameSeperator]}>|</Text>
-              <Text
-                style={[styles.movieInfoText, {flex: 1}]}
-                numberOfLines={1}
-                ellipsizeMode="clip">
-                Writer:{' '}
-                <Text style={styles.movieInfoName}>
-                  {movieData.Writer?.split(',')?.[0] || movieData.Writer}
+              <View style={styles.movieInfo}>
+                <Text style={styles.movieInfoText}>
+                  Director:{' '}
+                  <Text style={styles.movieInfoName}>{movieData.Director}</Text>
                 </Text>
-              </Text>
+                <Text style={[styles.movieInfoNameSeperator]}>|</Text>
+                <Text
+                  style={[styles.movieInfoText, {flex: 1}]}
+                  numberOfLines={1}
+                  ellipsizeMode="clip">
+                  Writer:{' '}
+                  <Text style={styles.movieInfoName}>
+                    {movieData.Writer?.split(',')?.[0] || movieData.Writer}
+                  </Text>
+                </Text>
+              </View>
             </View>
-          </View>
-          <View style={styles.seperator} />
-          <View style={styles.castContainer}>
-            <Text style={styles.castContainerHeading}>Starring</Text>
-            <ScrollView
-              horizontal
-              showsVerticalScrollIndicator={false}
-              showsHorizontalScrollIndicator={false}>
-              <FlatList
-                scrollEnabled={false}
-                data={movieData?.cast}
-                numColumns={Math.ceil(movieData?.cast?.length / 2)}
-                keyExtractor={(item, index) => item.name + index}
-                renderItem={({item}) => <RenderCast item={item} />}
-                ItemSeparatorComponent={item => (
-                  <View style={{height: 20, width: 10}} />
-                )}
-                contentContainerStyle={styles.castListContainer}
-              />
-            </ScrollView>
-          </View>
-        </View>
+            <View style={styles.seperator} />
+            <Animated.View style={[styles.castContainer, animatedCastStyle]}>
+              <Text style={styles.castContainerHeading}>Starring</Text>
+              <ScrollView
+                horizontal
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}>
+                <FlatList
+                  scrollEnabled={false}
+                  data={movieData?.cast}
+                  numColumns={Math.ceil(movieData?.cast?.length / 2)}
+                  keyExtractor={(item, index) => item.name + index}
+                  renderItem={({item}) => <RenderCast item={item} />}
+                  ItemSeparatorComponent={item => (
+                    <View style={{height: 20, width: 10}} />
+                  )}
+                  contentContainerStyle={styles.castListContainer}
+                />
+              </ScrollView>
+            </Animated.View>
+          </Animated.View>
+        </Animated.View>
       </ScrollView>
-      <View style={styles.buttonContainer}>
+      <Animated.View style={[styles.buttonContainer, animatedCardButtonStyle]}>
         <TouchableOpacity activeOpacity={0.9} style={styles.button}>
           <Text style={styles.buttonText}>Reservation</Text>
         </TouchableOpacity>
-      </View>
+      </Animated.View>
       <View style={{width: '100%', height: insets.bottom || 10}} />
-    </View>
+    </Animated.View>
   );
 };
 
