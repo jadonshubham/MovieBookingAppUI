@@ -100,6 +100,9 @@ const Details = ({route, navigation}) => {
 
   const goBack = () => navigation.goBack();
 
+  const handleReservationNavigation = () =>
+    navigation.navigate('Reservation', {movieData});
+
   return (
     <Animated.View style={[styles.container]}>
       <StatusBar hidden />
@@ -191,7 +194,10 @@ const Details = ({route, navigation}) => {
         </Animated.View>
       </ScrollView>
       <Animated.View style={[styles.buttonContainer, animatedCardButtonStyle]}>
-        <TouchableOpacity activeOpacity={0.9} style={styles.button}>
+        <TouchableOpacity
+          activeOpacity={0.9}
+          style={styles.button}
+          onPress={handleReservationNavigation}>
           <Text style={styles.buttonText}>Reservation</Text>
         </TouchableOpacity>
       </Animated.View>
